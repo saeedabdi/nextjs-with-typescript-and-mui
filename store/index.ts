@@ -1,5 +1,6 @@
+import { configureStore } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
-import { applyMiddleware, createStore, Middleware } from 'redux';
+import { applyMiddleware, Middleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 
@@ -15,11 +16,16 @@ const bindMiddleware = (middleware: Middleware<any, any, any>[]) => {
 
 export const makeStore = () => {
     const sagaMiddleware = createSagaMiddleware();
-    const store = createStore(rootReducer, bindMiddleware([sagaMiddleware]));
-
-    (store as any).sagaTask = sagaMiddleware.run(rootSaga);
+    const store = configureStore({
+        reducer: rootReducer,
+        middleware: [sagaMiddleware],
+    });
+    sagaMiddleware.run(rootSaga);
 
     return store;
 };
+export const store = makeStore();
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
 
-export const wrapper = createWrapper(makeStore, { debug: true });
+export const wrapper = createWrapper(() => store, { debug: true });

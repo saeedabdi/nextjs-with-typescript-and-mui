@@ -1,11 +1,12 @@
 import { createTheme } from '@mui/material';
 import { red } from '@mui/material/colors';
 
-export const getDesignTokens = (mode: 'light' | 'dark') => ({
+export const getDesignTokens = (mode: 'light' | 'dark', direction: 'rtl' | 'ltr') => ({
     palette: {
         mode: mode,
+        direction,
         primary: {
-            main: '#ff8927',
+            main: 'rgb(255, 168, 46)',
         },
         secondary: {
             main: '#19857b',
@@ -16,10 +17,6 @@ export const getDesignTokens = (mode: 'light' | 'dark') => ({
         },
     },
 });
-const dark = createTheme(getDesignTokens('dark'));
 
-const light = createTheme(getDesignTokens('light'));
-export default {
-    light,
-    dark,
-};
+export default createTheme(getDesignTokens('dark', 'rtl'));
+// export const ltrLightTheme = createTheme(getDesignTokens('dark', 'ltr'));
