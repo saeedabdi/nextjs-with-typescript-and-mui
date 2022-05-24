@@ -1,6 +1,10 @@
 {
-    "name": "nextjs-with-typescript",
+    "name": "nextjs-with-typescript-and-mui",
     "version": "5.0.0",
+    "author": {
+        "name": "Saeed Abdi",
+        "email": "saeedabdi25.s@gmail.com"
+    },
     "private": true,
     "scripts": {
         "dev": "next dev",
