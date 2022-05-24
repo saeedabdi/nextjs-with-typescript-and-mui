@@ -6,7 +6,8 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 
 import createEmotionCache from '../src/createEmotionCache';
-import theme from '../src/theme';
+import theme from 'src/theme';
+import { wrapper } from 'store';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -15,7 +16,7 @@ interface MyAppProps extends AppProps {
     emotionCache?: EmotionCache;
 }
 
-export default function MyApp(props: MyAppProps) {
+function MyApp(props: MyAppProps) {
     const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
     return (
         <CacheProvider value={emotionCache}>
@@ -30,3 +31,5 @@ export default function MyApp(props: MyAppProps) {
         </CacheProvider>
     );
 }
+
+export default wrapper.withRedux(MyApp);

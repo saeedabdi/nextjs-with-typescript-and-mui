@@ -28,6 +28,7 @@
     },
     "devDependencies": {
         "@types/node": "latest",
+        "@emotion/babel-plugin": "11.0.0",
         "@types/react": "latest",
         "@typescript-eslint/eslint-plugin": "^5.26.0",
         "eslint": "^7.16.0",
