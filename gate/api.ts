@@ -3,7 +3,7 @@ import axios, { Method } from 'axios';
 import { isEmpty } from '../utils';
 
 const client = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api',
+    baseURL: '/api',
 });
 
 client.defaults.timeout = 20000;
