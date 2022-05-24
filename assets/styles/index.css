@@ -1,0 +1,9 @@
+@import "./typography.css";
+
+:root{
+    font-family: Poppins, Vazir !important;
+}
+body{
+    font-family: Poppins, Vazir !important;
+}
+

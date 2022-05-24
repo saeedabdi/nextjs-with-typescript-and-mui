@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import AddIcon from '@mui/icons-material/Add';
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Alert, Box, Button } from '@mui/material';
 import gate from 'gate';
 import { useTranslation } from 'hooks/useTranslation';
 
@@ -20,6 +20,11 @@ function AddNewSocial() {
 
     return (
         <>
+            {addNewSocial.error && (addNewSocial.error as any).data?.message && (
+                <Alert onClick={addNewSocial.reset} variant="filled" severity="error">
+                    {(addNewSocial.error as any).data.message}
+                </Alert>
+            )}
             <Accordion
                 expanded={expand}
                 sx={{
@@ -46,7 +51,7 @@ function AddNewSocial() {
                                     marginRight: '8px',
                                 }}
                             />
-                            {t('Add Social')}
+                            {t('Add social')}
                         </Button>
                     </Box>
                 </AccordionSummary>

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -29,15 +28,15 @@ function SocialForm({ data, title, onSubmit, onCancel }: SocialFormProps) {
     const {
         control,
         reset,
+        setValue,
         handleSubmit,
         formState: { errors, isValid },
     } = useForm<SocialsEntity>({
         resolver,
+        defaultValues: data,
         mode: 'all',
     });
-    useEffect(() => {
-        reset(data);
-    }, [data, reset]);
+
     const { social, link } = useWatch({
         control,
     });

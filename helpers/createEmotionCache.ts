@@ -6,7 +6,7 @@ import rtlPlugin from 'stylis-plugin-rtl';
 // It allows developers to easily override MUI styles with other styling solutions, like CSS modules.
 export default function createEmotionCache(isRtl: boolean) {
     return createCache({
-        key: 'css',
+        key: 'css' + '-' + isRtl,
         prepend: true,
         stylisPlugins: isRtl ? [prefixer, rtlPlugin] : [],
     });

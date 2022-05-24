@@ -3,11 +3,11 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import Link from 'helpers/Link';
+import ProTip from 'helpers/ProTip';
 import type { NextPage } from 'next';
 
-import Copyright from '../src/Copyright';
-import Link from '../src/Link';
-import ProTip from '../src/ProTip';
+import Copyright from '../helpers/Copyright';
 
 const About: NextPage = () => {
     return (

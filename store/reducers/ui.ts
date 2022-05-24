@@ -5,16 +5,19 @@ const slice = createSlice({
 
     initialState: {
         theme: {
-            mode: 'light' as 'light' | 'dark',
+            mode: 'light' as 'light' | 'dark' | 'blue',
         },
     },
     reducers: {
         toggleDarkMode(state) {
             state.theme.mode = state.theme.mode === 'light' ? 'dark' : 'light';
         },
+        toggleBlueMode(state) {
+            state.theme.mode = state.theme.mode === 'light' ? 'blue' : 'light';
+        },
     },
 });
 
-export const { toggleDarkMode } = slice.actions;
+export const { toggleDarkMode, toggleBlueMode } = slice.actions;
 
 export default slice.reducer;

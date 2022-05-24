@@ -4,16 +4,15 @@ import { useSelector } from 'react-redux';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
+import createEmotionCache from 'helpers/createEmotionCache';
+import theme from 'helpers/theme';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import theme from 'src/theme';
 import { wrapper } from 'store';
 import { getTheme } from 'store/selectors/ui';
 
-import createEmotionCache from '../src/createEmotionCache';
-
-// Client-side cache, shared for the whole session of the user in the browser.
+import 'assets/styles/index.css';
 
 interface MyAppProps extends AppProps {
     emotionCache?: EmotionCache;
@@ -25,30 +24,29 @@ function MyApp(props: MyAppProps) {
     const { locale } = useRouter();
     const { mode } = useSelector(getTheme);
     const [queryClient] = React.useState(() => new QueryClient());
-    const isRtl = locale === 'fa';
+
     const {
         Component,
-        emotionCache = isRtl ? rtlClientSideEmotionCache : clientSideEmotionCache,
+        emotionCache = locale === 'fa' ? rtlClientSideEmotionCache : clientSideEmotionCache,
         pageProps,
     } = props;
 
-    const motionCache = React.useMemo(() => createEmotionCache(isRtl), [isRtl]);
     React.useLayoutEffect(() => {
-        document.body.dir = isRtl ? 'rtl' : 'ltr';
-    }, [isRtl]);
+        document.body.dir = locale === 'fa' ? 'rtl' : 'ltr';
+    }, [locale]);
+
     const memoizedTheme = React.useMemo(() => {
         return {
-            ...theme[mode as 'light' | 'dark'],
-            direction: isRtl ? 'rtl' : 'ltr',
+            ...theme[mode as keyof typeof theme],
+            direction: locale === 'fa' ? 'rtl' : 'ltr',
         };
-    }, [isRtl, mode]);
+    }, [locale, mode]);
     return (
-        <CacheProvider value={motionCache}>
+        <CacheProvider value={emotionCache}>
             <Head>
                 <meta name="viewport" content="initial-scale=1, width=device-width" />
             </Head>
             <ThemeProvider theme={memoizedTheme}>
-                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                 <CssBaseline />
                 <QueryClientProvider client={queryClient}>
                     <Hydrate state={pageProps.dehydratedState}>

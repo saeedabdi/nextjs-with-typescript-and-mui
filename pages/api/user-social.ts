@@ -9,6 +9,12 @@ export default (req: NextApiRequest, res: NextApiResponse<ResponseUser['socials'
             return res.status(200).json(user.socials);
         case 'POST':
             const newSocial = req.body;
+            const hasSocial = user.socials.find((social) => social.social === newSocial.social);
+            if (hasSocial) {
+                return res.status(400).json({
+                    message: 'Social already exists',
+                } as any);
+            }
             user.socials.push(newSocial);
 
             return res.status(200).json(user.socials);

@@ -31,7 +31,9 @@ function Select({
 }: SelectProps) {
     const { control: defaultControl } = useForm();
 
-    const { field } = useController({
+    const {
+        field: { onChange, ...fieldProps },
+    } = useController({
         control: control ? control : defaultControl,
         name,
         defaultValue: otherProps.defaultValue,
@@ -61,11 +63,11 @@ function Select({
                     },
                 }}
                 error={!!helperText}
-                onChange={(e) => {
-                    field.onChange(e.target.value);
-                }}
-                value={field.value}
                 {...otherProps}
+                onChange={(e) => {
+                    onChange(e.target.value);
+                }}
+                {...fieldProps}
             >
                 {options.map(({ value, label, icon }) => (
                     <MenuItem
