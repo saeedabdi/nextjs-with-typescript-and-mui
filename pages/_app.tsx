@@ -30,12 +30,17 @@ function MyApp(props: MyAppProps) {
     const defaultTheme = useMediaQuery('(prefers-color-scheme: dark)') ? 'dark' : 'light';
     const [queryClient] = React.useState(() => new QueryClient());
 
-    const {
-        Component,
-        emotionCache = locale === 'fa' ? rtlClientSideEmotionCache : clientSideEmotionCache,
-        pageProps,
-    } = props;
+    const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
+    const memoizedEmotionCache = React.useMemo(() => {
+        if (locale === 'fa') {
+            return rtlClientSideEmotionCache;
+        }
+        if (locale === 'en') {
+            return clientSideEmotionCache;
+        }
+        return emotionCache;
+    }, [locale]);
     React.useLayoutEffect(() => {
         document.body.dir = locale === 'fa' ? 'rtl' : 'ltr';
     }, [locale]);
@@ -52,7 +57,7 @@ function MyApp(props: MyAppProps) {
         };
     }, [locale, mode]);
     return (
-        <CacheProvider value={emotionCache}>
+        <CacheProvider value={memoizedEmotionCache}>
             <Head>
                 <meta name="viewport" content="initial-scale=1, width=device-width" />
             </Head>
