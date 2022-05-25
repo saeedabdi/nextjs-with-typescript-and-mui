@@ -17,5 +17,14 @@
     "Edit social": "ویرایش مسیر ارتباطی",
     "Add new social": "افزودن مسیر ارتباطی جدید",
     "Loading...": "در حال بارگذاری...",
-    "Socials": "مسیر ارتباطی ها"
+    "Socials": "مسیر ارتباطی ها",
+    "Social's name is required": "نام مسیر ارتباطی را وارد کنید",
+    "This isn't a valid URL": "این یک URL معتبر نیست",
+    "Toggle blue theme": "تغییر رنگ به آبی",
+    "Select social": "انتخاب مسیر ارتباطی",
+    "Twitter": "تویتر",
+    "Facebook": "فیسبوک",
+    "Instagram": "اینستاگرام",
+    "Linkedin": "لینکدین",
+    "web": "وب"
 }

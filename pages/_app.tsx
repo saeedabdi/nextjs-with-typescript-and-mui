@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CacheProvider, EmotionCache } from '@emotion/react';
+import { useMediaQuery } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import createEmotionCache from 'helpers/createEmotionCache';
@@ -10,6 +12,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { wrapper } from 'store';
+import { toggleDarkMode } from 'store/reducers/ui';
 import { getTheme } from 'store/selectors/ui';
 
 import 'assets/styles/index.css';
@@ -22,7 +25,9 @@ const rtlClientSideEmotionCache = createEmotionCache(true);
 const clientSideEmotionCache = createEmotionCache(false);
 function MyApp(props: MyAppProps) {
     const { locale } = useRouter();
+    const dispatch = useDispatch();
     const { mode } = useSelector(getTheme);
+    const defaultTheme = useMediaQuery('(prefers-color-scheme: dark)') ? 'dark' : 'light';
     const [queryClient] = React.useState(() => new QueryClient());
 
     const {
@@ -34,6 +39,11 @@ function MyApp(props: MyAppProps) {
     React.useLayoutEffect(() => {
         document.body.dir = locale === 'fa' ? 'rtl' : 'ltr';
     }, [locale]);
+    React.useEffect(() => {
+        if (mode !== defaultTheme) {
+            dispatch(toggleDarkMode());
+        }
+    }, [defaultTheme]);
 
     const memoizedTheme = React.useMemo(() => {
         return {

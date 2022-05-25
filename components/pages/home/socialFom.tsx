@@ -7,6 +7,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import { Box, Button, Typography } from '@mui/material';
 import { Input } from 'components/common';
 import Select from 'components/common/select';
+import { capitalize } from 'helpers/capitalaize';
 import { useTranslation } from 'hooks/useTranslation';
 import { useYupValidationResolver } from 'hooks/useYupValidationResolver';
 import { SocialsEntity } from 'interfaces/api/user.interface';
@@ -48,27 +49,27 @@ function SocialForm({ data, title, onSubmit, onCancel }: SocialFormProps) {
         },
         {
             value: 'facebook',
-            label: 'Facebook',
+            label: t('Facebook'),
             icon: <FacebookIcon />,
         },
         {
             value: 'twitter',
-            label: 'Twitter',
+            label: t('Twitter'),
             icon: <TwitterIcon />,
         },
         {
             value: 'instagram',
-            label: 'Instagram',
+            label: t('Instagram'),
             icon: <InstagramIcon />,
         },
         {
             value: 'linkedin',
-            label: 'Linkedin',
+            label: t('Linkedin'),
             icon: <LinkedInIcon />,
         },
         {
             value: 'web',
-            label: 'Web',
+            label: t('Web'),
             icon: <WebIcon />,
         },
     ];
@@ -77,7 +78,7 @@ function SocialForm({ data, title, onSubmit, onCancel }: SocialFormProps) {
             <Typography component={'h6'}>
                 {title}
                 <Typography textTransform="capitalize" mx={1} component={'span'}>
-                    {social}
+                    {t(capitalize(social || ''))}
                 </Typography>
             </Typography>
             <Box
@@ -123,7 +124,14 @@ function SocialForm({ data, title, onSubmit, onCancel }: SocialFormProps) {
                     flexDirection: 'row',
                 }}
             >
-                <Button onClick={onCancel} variant="outlined" color="primary">
+                <Button
+                    onClick={() => {
+                        reset(data);
+                        onCancel();
+                    }}
+                    variant="outlined"
+                    color="primary"
+                >
                     {t('Cancel')}
                 </Button>
                 <Button

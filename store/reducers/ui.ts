@@ -10,10 +10,12 @@ const slice = createSlice({
     },
     reducers: {
         toggleDarkMode(state) {
-            state.theme.mode = state.theme.mode === 'light' ? 'dark' : 'light';
+            const newTheme = state.theme.mode === 'light' ? 'dark' : 'light';
+            state.theme.mode = newTheme;
         },
         toggleBlueMode(state) {
-            state.theme.mode = state.theme.mode === 'light' ? 'blue' : 'light';
+            const newTheme = state.theme.mode === 'light' ? 'blue' : 'light';
+            state.theme.mode = newTheme;
         },
     },
 });

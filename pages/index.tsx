@@ -61,7 +61,7 @@ const Home: NextPage = () => {
                     variant="outlined"
                     color="info"
                 >
-                    {t('Toggle Blue Theme')}
+                    {t('Toggle blue theme')}
                 </Button>
                 <Paper
                     sx={{
