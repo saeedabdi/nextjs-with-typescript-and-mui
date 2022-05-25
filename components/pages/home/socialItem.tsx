@@ -35,7 +35,7 @@ function SocialItem({ data }: SocialFormProps) {
         twitter = 'twitter',
         instagram = 'instagram',
         linkedin = 'linkedin',
-        website = 'website',
+        website = 'web',
     }
     const { t } = useTranslation();
     const [open, setOpen] = useState(false);
@@ -51,7 +51,7 @@ function SocialItem({ data }: SocialFormProps) {
                 return <InstagramIcon />;
             case 'linkedin':
                 return <LinkedInIcon />;
-            case 'website':
+            case 'web':
                 return <WebsiteIcon />;
             default:
                 return <></>;
