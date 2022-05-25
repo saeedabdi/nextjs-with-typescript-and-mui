@@ -62,7 +62,7 @@ function AddNewSocial() {
                             onSubmit={(data) =>
                                 addNewSocial.mutate({
                                     ...data,
-                                    id: Math.random().toString(36).substr(2, 9),
+                                    id: Math.random().toString(36),
                                 })
                             }
                             title={t('Add new social')}

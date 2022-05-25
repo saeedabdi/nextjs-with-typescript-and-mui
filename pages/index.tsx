@@ -77,7 +77,7 @@ const Home: NextPage = () => {
                     </Typography>
                     <AddNewSocial />
                     {isLoading ? (
-                        <Typography fontWeight="400" fontSize={10}>
+                        <Typography fontWeight="400" p={2} fontSize={16}>
                             {t('Loading')}
                         </Typography>
                     ) : (

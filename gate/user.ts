@@ -8,11 +8,7 @@ export default {
     addUserSocial: (social: SocialsEntity) =>
         api.post<ResponseUser['socials']>('/user-social', social),
     deleteUserSocial: (socialId: string) =>
-        api.delete<ResponseUser['socials']>('/user-social', {
-            params: {
-                id: socialId,
-            },
-        }),
+        api.delete<ResponseUser['socials']>('/user-social?id=' + socialId),
     updateUserSocial: (social: SocialsEntity) =>
         api.put<ResponseUser['socials']>('/user-social', social),
 };

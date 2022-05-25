@@ -28,6 +28,14 @@ export default (req: NextApiRequest, res: NextApiResponse<ResponseUser['socials'
             const socialToUpdateIndex = user.socials.findIndex(
                 (social) => social.id === socialToUpdate.id,
             );
+            const socialToUpdateIsExist = user.socials.find(
+                (social) => social.social === socialToUpdate.social,
+            );
+            if (socialToUpdateIsExist) {
+                return res.status(400).json({
+                    message: 'Social already exists',
+                } as any);
+            }
             user.socials[socialToUpdateIndex] = socialToUpdate;
             return res.status(200).json(user.socials);
         default:

@@ -11,6 +11,7 @@ import {
     Accordion,
     AccordionDetails,
     AccordionSummary,
+    Alert,
     Box,
     Button,
     Typography,
@@ -71,6 +72,11 @@ function SocialItem({ data }: SocialFormProps) {
 
     return (
         <>
+            {updateSocial.error && (updateSocial.error as any).data?.message && (
+                <Alert onClick={updateSocial.reset} variant="filled" severity="error">
+                    {(updateSocial.error as any).data.message}
+                </Alert>
+            )}
             <Accordion
                 expanded={expand}
                 sx={{
