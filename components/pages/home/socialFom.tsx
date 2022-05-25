@@ -86,6 +86,9 @@ function SocialForm({ data, title, onSubmit, onCancel }: SocialFormProps) {
                     gap: '8px',
                     mt: 3,
                     justifyContent: 'space-between',
+                    '@media (max-width: 768px)': {
+                        flexDirection: 'column',
+                    },
                 }}
             >
                 <Select

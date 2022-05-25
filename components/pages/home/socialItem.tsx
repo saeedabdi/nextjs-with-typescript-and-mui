@@ -76,45 +76,50 @@ function SocialItem({ data }: SocialFormProps) {
                 sx={{
                     marginTop: '16px',
                     border: 'none',
+                    borderRadius: '9px',
                 }}
                 onChange={() => ({})}
             >
                 <AccordionSummary>
                     <Box
                         sx={{
-                            display: 'grid',
-                            gridTemplateColumns: '1fr 150px',
-                            gridGap: '0px 16px',
-                            borderRadius: '16px',
-                            marginBottom: '16px',
+                            display: 'flex',
                             width: '100%',
-                            backgroundColor: 'background.paper',
-                            padding: '16px',
-                            gridTemplateRows: 'auto',
-                            gridTemplateAreas: `
-                        "details actions"
-                        "form form" 
-                        `,
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
                         }}
                     >
                         <Box
                             sx={{
-                                gridArea: 'details details details',
                                 display: 'flex',
                                 gap: '8px',
                                 width: '100%',
+
                                 alignItems: 'center',
+                                '@media (max-width: 768px)': {
+                                    flexDirection: 'column',
+                                    alignItems: 'flex-start',
+                                },
                             }}
                         >
                             {renderIcon(data.social as social)}
                             <Typography>{data.social}</Typography>
-                            <Typography>
+                            <Typography
+                                sx={{
+                                    '@media (max-width: 768px)': {
+                                        fontSize: '0.8rem',
+                                    },
+                                }}
+                            >
                                 {t('Link')}:
                                 <Link
                                     color="primary"
                                     component="a"
                                     sx={{
                                         margin: '0px 8px',
+                                        '@media (max-width: 768px)': {
+                                            fontSize: '0.75rem',
+                                        },
                                     }}
                                     href={data.link}
                                     variant="body1"
@@ -129,9 +134,13 @@ function SocialItem({ data }: SocialFormProps) {
                         <Box
                             sx={{
                                 display: 'flex',
+                                justifyContent: 'flex-end',
                                 alignItems: 'center',
                                 gap: '8px',
                                 width: '100%',
+                                '@media (max-width: 768px)': {
+                                    flexDirection: 'column',
+                                },
                             }}
                         >
                             <Button
@@ -145,7 +154,16 @@ function SocialItem({ data }: SocialFormProps) {
                                 color="primary"
                             >
                                 <EditIcon />
-                                {t('Edit')}
+                                <Typography
+                                    sx={{
+                                        fontSize: '0.75rem',
+                                        '@media (max-width: 768px)': {
+                                            display: 'none',
+                                        },
+                                    }}
+                                >
+                                    {t('Edit')}
+                                </Typography>
                             </Button>
                             <Button
                                 size="small"
@@ -159,7 +177,16 @@ function SocialItem({ data }: SocialFormProps) {
                                 color="error"
                             >
                                 <DeleteIcon />
-                                {t('Delete')}
+                                <Typography
+                                    sx={{
+                                        fontSize: '0.75rem',
+                                        '@media (max-width: 768px)': {
+                                            display: 'none',
+                                        },
+                                    }}
+                                >
+                                    {t('Delete')}
+                                </Typography>
                             </Button>
                         </Box>
                     </Box>
