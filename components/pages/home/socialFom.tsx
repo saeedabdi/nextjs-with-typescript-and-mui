@@ -96,6 +96,7 @@ function SocialForm({ data, title, onSubmit, onCancel }: SocialFormProps) {
                     wrapperSx={{
                         width: '100%',
                     }}
+                    disabled={!!data}
                     name="social"
                     control={control}
                     error={!!errors.social?.message}
